@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light" data-density="comfortable">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSS Variables + SCSS Button Demo</title>
+    <script>
+      (function () {
+        var theme = localStorage.getItem('button-demo-theme');
+        var density = localStorage.getItem('button-demo-density') || 'comfortable';
+
+        if (!theme) {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.dataset.density = density;
+      })();
+    </script>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="demo-page">
+      <section class="demo-card">
+        <h1 class="demo-title">CSS Variables + SCSS 按钮组件</h1>
+        <p class="demo-text">
+          组件样式只读取 CSS Variables（CSS 变量），主题切换通过修改
+          <code>data-theme</code> 和 <code>data-density</code> 完成。
+        </p>
+        <div class="demo-actions">
+          <button class="ui-button ui-button--primary" data-theme-toggle type="button">切换主题</button>
+          <button class="ui-button" data-density-toggle type="button">切换密度</button>
+        </div>
+      </section>
+
+      <section class="demo-card" aria-label="按钮变体">
+        <p class="demo-text">变体</p>
+        <div class="demo-actions">
+          <button class="ui-button ui-button--primary" type="button">Primary</button>
+          <button class="ui-button" type="button">Secondary</button>
+          <button class="ui-button ui-button--danger" type="button">Danger</button>
+          <button class="ui-button ui-button--ghost" type="button">Ghost</button>
+          <button class="ui-button" type="button" disabled>Disabled</button>
+        </div>
+      </section>
+
+      <section class="demo-card" aria-label="按钮尺寸">
+        <p class="demo-text">尺寸</p>
+        <div class="demo-actions">
+          <button class="ui-button ui-button--primary ui-button--sm" type="button">Small</button>
+          <button class="ui-button ui-button--primary" type="button">Medium</button>
+          <button class="ui-button ui-button--primary ui-button--lg" type="button">Large</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./theme.js"></script>
+  </body>
+</html>

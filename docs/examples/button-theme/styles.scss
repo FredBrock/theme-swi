@@ -1,0 +1,240 @@
+$light-theme: (
+  color-primary: #2563eb,
+  color-primary-hover: #1d4ed8,
+  color-primary-active: #1e40af,
+  color-danger: #dc2626,
+  color-danger-hover: #b91c1c,
+  color-danger-active: #991b1b,
+  color-bg: #ffffff,
+  color-surface: #ffffff,
+  color-text: #111827,
+  color-text-muted: #6b7280,
+  color-border: #d1d5db,
+  color-disabled-bg: #f3f4f6,
+  color-disabled-text: #9ca3af,
+  radius-md: 8px,
+  button-height-sm: 32px,
+  button-height-md: 40px,
+  button-height-lg: 48px,
+  button-padding-x-sm: 12px,
+  button-padding-x-md: 16px,
+  button-padding-x-lg: 20px,
+  button-font-size-sm: 14px,
+  button-font-size-md: 14px,
+  button-font-size-lg: 16px,
+  button-primary-bg: var(--color-primary),
+  button-primary-bg-hover: var(--color-primary-hover),
+  button-primary-bg-active: var(--color-primary-active),
+  button-primary-text: #ffffff,
+  button-primary-border: var(--color-primary),
+  button-secondary-bg: var(--color-surface),
+  button-secondary-bg-hover: #f9fafb,
+  button-secondary-bg-active: #f3f4f6,
+  button-secondary-text: var(--color-text),
+  button-secondary-border: var(--color-border),
+  button-danger-bg: var(--color-danger),
+  button-danger-bg-hover: var(--color-danger-hover),
+  button-danger-bg-active: var(--color-danger-active),
+  button-danger-text: #ffffff,
+  button-danger-border: var(--color-danger),
+);
+
+$dark-theme: (
+  color-primary: #60a5fa,
+  color-primary-hover: #93c5fd,
+  color-primary-active: #bfdbfe,
+  color-danger: #f87171,
+  color-danger-hover: #fca5a5,
+  color-danger-active: #fecaca,
+  color-bg: #0f172a,
+  color-surface: #111827,
+  color-text: #f8fafc,
+  color-text-muted: #cbd5e1,
+  color-border: #334155,
+  color-disabled-bg: #1f2937,
+  color-disabled-text: #64748b,
+  radius-md: 8px,
+  button-height-sm: 32px,
+  button-height-md: 40px,
+  button-height-lg: 48px,
+  button-padding-x-sm: 12px,
+  button-padding-x-md: 16px,
+  button-padding-x-lg: 20px,
+  button-font-size-sm: 14px,
+  button-font-size-md: 14px,
+  button-font-size-lg: 16px,
+  button-primary-bg: var(--color-primary),
+  button-primary-bg-hover: var(--color-primary-hover),
+  button-primary-bg-active: var(--color-primary-active),
+  button-primary-text: #0f172a,
+  button-primary-border: var(--color-primary),
+  button-secondary-bg: var(--color-surface),
+  button-secondary-bg-hover: #1f2937,
+  button-secondary-bg-active: #334155,
+  button-secondary-text: var(--color-text),
+  button-secondary-border: var(--color-border),
+  button-danger-bg: var(--color-danger),
+  button-danger-bg-hover: var(--color-danger-hover),
+  button-danger-bg-active: var(--color-danger-active),
+  button-danger-text: #0f172a,
+  button-danger-border: var(--color-danger),
+);
+
+@mixin theme-vars($theme) {
+  @each $name, $value in $theme {
+    --#{$name}: #{$value};
+  }
+}
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+  @include theme-vars($light-theme);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  @include theme-vars($dark-theme);
+}
+
+[data-density='compact'] {
+  --button-height-sm: 28px;
+  --button-height-md: 34px;
+  --button-height-lg: 40px;
+  --button-padding-x-sm: 10px;
+  --button-padding-x-md: 12px;
+  --button-padding-x-lg: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.demo-page {
+  display: grid;
+  gap: 24px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 20px;
+}
+
+.demo-card {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.demo-title {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.demo-text {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ui-button {
+  --button-bg: var(--button-secondary-bg);
+  --button-bg-hover: var(--button-secondary-bg-hover);
+  --button-bg-active: var(--button-secondary-bg-active);
+  --button-text: var(--button-secondary-text);
+  --button-border: var(--button-secondary-border);
+  --button-height: var(--button-height-md);
+  --button-padding-x: var(--button-padding-x-md);
+  --button-font-size: var(--button-font-size-md);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: var(--button-height);
+  padding: 0 var(--button-padding-x);
+  border: 1px solid var(--button-border);
+  border-radius: var(--radius-md);
+  background: var(--button-bg);
+  color: var(--button-text);
+  font: inherit;
+  font-size: var(--button-font-size);
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 120ms ease;
+}
+
+.ui-button:hover:not(:disabled) {
+  background: var(--button-bg-hover);
+}
+
+.ui-button:active:not(:disabled) {
+  background: var(--button-bg-active);
+  transform: translateY(1px);
+}
+
+.ui-button:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-primary), transparent 65%);
+  outline-offset: 2px;
+}
+
+.ui-button:disabled,
+.ui-button[aria-disabled='true'] {
+  border-color: transparent;
+  background: var(--color-disabled-bg);
+  color: var(--color-disabled-text);
+  cursor: not-allowed;
+}
+
+.ui-button--primary {
+  --button-bg: var(--button-primary-bg);
+  --button-bg-hover: var(--button-primary-bg-hover);
+  --button-bg-active: var(--button-primary-bg-active);
+  --button-text: var(--button-primary-text);
+  --button-border: var(--button-primary-border);
+}
+
+.ui-button--danger {
+  --button-bg: var(--button-danger-bg);
+  --button-bg-hover: var(--button-danger-bg-hover);
+  --button-bg-active: var(--button-danger-bg-active);
+  --button-text: var(--button-danger-text);
+  --button-border: var(--button-danger-border);
+}
+
+.ui-button--ghost {
+  --button-bg: transparent;
+  --button-bg-hover: color-mix(in srgb, var(--color-primary), transparent 90%);
+  --button-bg-active: color-mix(in srgb, var(--color-primary), transparent 82%);
+  --button-text: var(--color-primary);
+  --button-border: transparent;
+}
+
+.ui-button--sm {
+  --button-height: var(--button-height-sm);
+  --button-padding-x: var(--button-padding-x-sm);
+  --button-font-size: var(--button-font-size-sm);
+}
+
+.ui-button--lg {
+  --button-height: var(--button-height-lg);
+  --button-padding-x: var(--button-padding-x-lg);
+  --button-font-size: var(--button-font-size-lg);
+}
