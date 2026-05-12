@@ -1,0 +1,31 @@
+$theme-light: (
+  color-primary: #2563eb,
+  color-primary-hover: #1d4ed8,
+  color-primary-active: #1e40af,
+  color-danger: #dc2626,
+  color-danger-hover: #b91c1c,
+  color-danger-active: #991b1b,
+  color-bg: #ffffff,
+  color-surface: #ffffff,
+  color-text: #111827,
+  color-text-muted: #6b7280,
+  color-border: #d1d5db,
+  color-disabled-bg: #f3f4f6,
+  color-disabled-text: #9ca3af,
+);
+
+$theme-dark: (
+  color-primary: #60a5fa,
+  color-primary-hover: #93c5fd,
+  color-primary-active: #bfdbfe,
+  color-danger: #f87171,
+  color-danger-hover: #fca5a5,
+  color-danger-active: #fecaca,
+  color-bg: #0f172a,
+  color-surface: #111827,
+  color-text: #f8fafc,
+  color-text-muted: #cbd5e1,
+  color-border: #334155,
+  color-disabled-bg: #1f2937,
+  color-disabled-text: #64748b,
+);

@@ -27,6 +27,11 @@ const routes: Array<RouteConfig> = [
     path: '/hct-palette',
     name: 'hct-palette',
     component: () => import(/* webpackChunkName: "hct-palette" */ '../views/HctPaletteView.vue')
+  },
+  {
+    path: '/root-theme',
+    name: 'root-theme',
+    component: () => import(/* webpackChunkName: "root-theme" */ '../views/RootThemeView.vue')
   }
 ]
 

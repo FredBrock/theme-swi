@@ -103,9 +103,9 @@ def create_hct_theme_vars(seed_color: str, vivid: bool = False) -> dict[str, str
             "colorPrimaryHover": tones["90"],
             "colorPrimary": tones["80"],
             "colorPrimaryActive": tones["70"],
-            "buttonPrimaryBg": "var(--color-primary)",
-            "buttonPrimaryBgHover": "var(--color-primary-hover)",
-            "buttonPrimaryBgActive": "var(--color-primary-active)",
+            "buttonPrimaryBg": "var(--mc-color-primary)",
+            "buttonPrimaryBgHover": "var(--mc-color-primary-hover)",
+            "buttonPrimaryBgActive": "var(--mc-color-primary-active)",
             "buttonPrimaryText": tones["10"],
         }
 
@@ -116,9 +116,9 @@ def create_hct_theme_vars(seed_color: str, vivid: bool = False) -> dict[str, str
         "colorPrimaryHover": tones["70"],
         "colorPrimary": tones["50"],
         "colorPrimaryActive": tones["40"],
-        "buttonPrimaryBg": "var(--color-primary)",
-        "buttonPrimaryBgHover": "var(--color-primary-hover)",
-        "buttonPrimaryBgActive": "var(--color-primary-active)",
+        "buttonPrimaryBg": "var(--mc-color-primary)",
+        "buttonPrimaryBgHover": "var(--mc-color-primary-hover)",
+        "buttonPrimaryBgActive": "var(--mc-color-primary-active)",
         "buttonPrimaryText": "#ffffff",
     }
 

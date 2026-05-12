@@ -59,28 +59,30 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+@import '@/styles/tokens/themes';
+
 .ui-button {
-  --button-bg: var(--button-secondary-bg);
-  --button-bg-hover: var(--button-secondary-bg-hover);
-  --button-bg-active: var(--button-secondary-bg-active);
-  --button-text: var(--button-secondary-text);
-  --button-border: var(--button-secondary-border);
-  --button-height: var(--button-height-md);
-  --button-padding-x: var(--button-padding-x-md);
-  --button-font-size: var(--button-font-size-md);
+  #{css-var-name(button-current-bg)}: css-var(button-secondary-bg);
+  #{css-var-name(button-current-bg-hover)}: css-var(button-secondary-bg-hover);
+  #{css-var-name(button-current-bg-active)}: css-var(button-secondary-bg-active);
+  #{css-var-name(button-current-text)}: css-var(button-secondary-text);
+  #{css-var-name(button-current-border)}: css-var(button-secondary-border);
+  #{css-var-name(button-current-height)}: css-var(button-height-md);
+  #{css-var-name(button-current-padding-x)}: css-var(button-padding-x-md);
+  #{css-var-name(button-current-font-size)}: css-var(button-font-size-md);
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: var(--button-height);
-  padding: 0 var(--button-padding-x);
-  border: 1px solid var(--button-border);
-  border-radius: var(--radius-md);
-  background: var(--button-bg);
-  color: var(--button-text);
+  height: css-var(button-current-height);
+  padding: 0 css-var(button-current-padding-x);
+  border: 1px solid css-var(button-current-border);
+  border-radius: css-var(button-radius);
+  background: css-var(button-current-bg);
+  color: css-var(button-current-text);
   font: inherit;
-  font-size: var(--button-font-size);
+  font-size: css-var(button-current-font-size);
   font-weight: 600;
   line-height: 1;
   text-decoration: none;
@@ -89,61 +91,61 @@ export default Vue.extend({
 }
 
 .ui-button:hover:not(:disabled) {
-  background: var(--button-bg-hover);
+  background: css-var(button-current-bg-hover);
 }
 
 .ui-button:active:not(:disabled) {
-  background: var(--button-bg-active);
+  background: css-var(button-current-bg-active);
   transform: translateY(1px);
 }
 
 .ui-button:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--color-primary), transparent 65%);
+  outline: 3px solid color-mix(in srgb, #{css-var(color-primary)}, transparent 65%);
   outline-offset: 2px;
 }
 
 .ui-button:disabled,
 .ui-button[aria-disabled='true'] {
   border-color: transparent;
-  background: var(--color-disabled-bg);
-  color: var(--color-disabled-text);
+  background: css-var(color-disabled-bg);
+  color: css-var(color-disabled-text);
   cursor: not-allowed;
 }
 
 .ui-button--primary {
-  --button-bg: var(--button-primary-bg);
-  --button-bg-hover: var(--button-primary-bg-hover);
-  --button-bg-active: var(--button-primary-bg-active);
-  --button-text: var(--button-primary-text);
-  --button-border: var(--button-primary-border);
+  #{css-var-name(button-current-bg)}: css-var(button-primary-bg);
+  #{css-var-name(button-current-bg-hover)}: css-var(button-primary-bg-hover);
+  #{css-var-name(button-current-bg-active)}: css-var(button-primary-bg-active);
+  #{css-var-name(button-current-text)}: css-var(button-primary-text);
+  #{css-var-name(button-current-border)}: css-var(button-primary-border);
 }
 
 .ui-button--danger {
-  --button-bg: var(--button-danger-bg);
-  --button-bg-hover: var(--button-danger-bg-hover);
-  --button-bg-active: var(--button-danger-bg-active);
-  --button-text: var(--button-danger-text);
-  --button-border: var(--button-danger-border);
+  #{css-var-name(button-current-bg)}: css-var(button-danger-bg);
+  #{css-var-name(button-current-bg-hover)}: css-var(button-danger-bg-hover);
+  #{css-var-name(button-current-bg-active)}: css-var(button-danger-bg-active);
+  #{css-var-name(button-current-text)}: css-var(button-danger-text);
+  #{css-var-name(button-current-border)}: css-var(button-danger-border);
 }
 
 .ui-button--ghost {
-  --button-bg: transparent;
-  --button-bg-hover: color-mix(in srgb, var(--color-primary), transparent 90%);
-  --button-bg-active: color-mix(in srgb, var(--color-primary), transparent 82%);
-  --button-text: var(--color-primary);
-  --button-border: transparent;
+  #{css-var-name(button-current-bg)}: transparent;
+  #{css-var-name(button-current-bg-hover)}: color-mix(in srgb, #{css-var(color-primary)}, transparent 90%);
+  #{css-var-name(button-current-bg-active)}: color-mix(in srgb, #{css-var(color-primary)}, transparent 82%);
+  #{css-var-name(button-current-text)}: css-var(color-primary);
+  #{css-var-name(button-current-border)}: transparent;
 }
 
 .ui-button--sm {
-  --button-height: var(--button-height-sm);
-  --button-padding-x: var(--button-padding-x-sm);
-  --button-font-size: var(--button-font-size-sm);
+  #{css-var-name(button-current-height)}: css-var(button-height-sm);
+  #{css-var-name(button-current-padding-x)}: css-var(button-padding-x-sm);
+  #{css-var-name(button-current-font-size)}: css-var(button-font-size-sm);
 }
 
 .ui-button--lg {
-  --button-height: var(--button-height-lg);
-  --button-padding-x: var(--button-padding-x-lg);
-  --button-font-size: var(--button-font-size-lg);
+  #{css-var-name(button-current-height)}: css-var(button-height-lg);
+  #{css-var-name(button-current-padding-x)}: css-var(button-padding-x-lg);
+  #{css-var-name(button-current-font-size)}: css-var(button-font-size-lg);
 }
 
 .ui-button--loading {

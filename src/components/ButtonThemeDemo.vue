@@ -89,17 +89,17 @@ export default Vue.extend({
       density: 'comfortable' as Density,
       brandThemeVars: {
         colorPrimary: '#2563eb',
-        buttonPrimaryBg: 'var(--color-primary)',
-        buttonPrimaryBorder: 'var(--color-primary)',
+        buttonPrimaryBg: 'var(--mc-color-primary)',
+        buttonPrimaryBorder: 'var(--mc-color-primary)',
       } as ThemeVars,
       dangerThemeVars: {
         colorPrimary: '#dc2626',
         colorPrimaryHover: '#b91c1c',
         colorPrimaryActive: '#991b1b',
-        buttonPrimaryBg: 'var(--color-primary)',
-        buttonPrimaryBgHover: 'var(--color-primary-hover)',
-        buttonPrimaryBgActive: 'var(--color-primary-active)',
-        buttonPrimaryBorder: 'var(--color-primary)',
+        buttonPrimaryBg: 'var(--mc-color-primary)',
+        buttonPrimaryBgHover: 'var(--mc-color-primary-hover)',
+        buttonPrimaryBgActive: 'var(--mc-color-primary-active)',
+        buttonPrimaryBorder: 'var(--mc-color-primary)',
       } as ThemeVars,
     };
   },
@@ -146,9 +146,9 @@ export default Vue.extend({
   display: grid;
   gap: 16px;
   padding: 24px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
+  border: 1px solid var(--mc-color-border);
+  border-radius: var(--mc-radius-md);
+  background: var(--mc-color-surface);
 }
 
 .demo-title {
@@ -159,7 +159,7 @@ export default Vue.extend({
 
 .demo-text {
   margin: 0;
-  color: var(--color-text-muted);
+  color: var(--mc-color-text-muted);
 }
 
 .demo-actions {

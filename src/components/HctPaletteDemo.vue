@@ -68,7 +68,7 @@
       <section class="hct-card" aria-label="按钮效果">
         <div class="hct-card__header">
           <h2>组件效果</h2>
-          <p><code>UiButton</code> 只读取 <code>var(--button-*)</code>，不关心 HCT 生成细节。</p>
+          <p><code>UiButton</code> 只读取 <code>var(--mc-button-*)</code>，不关心 HCT 生成细节。</p>
         </div>
         <div class="hct-actions">
           <UiButton variant="primary">Primary</UiButton>
@@ -142,9 +142,9 @@ const palettes: Palette[] = [
       colorPrimaryHover: '#00bebf',
       colorPrimary: '#008585',
       colorPrimaryActive: '#006a6a',
-      buttonPrimaryBg: 'var(--color-primary)',
-      buttonPrimaryBgHover: 'var(--color-primary-hover)',
-      buttonPrimaryBgActive: 'var(--color-primary-active)',
+      buttonPrimaryBg: 'var(--mc-color-primary)',
+      buttonPrimaryBgHover: 'var(--mc-color-primary-hover)',
+      buttonPrimaryBgActive: 'var(--mc-color-primary-active)',
       buttonPrimaryText: '#ffffff',
     },
   },
@@ -174,9 +174,9 @@ const palettes: Palette[] = [
       colorPrimaryHover: '#86a9ff',
       colorPrimary: '#016eff',
       colorPrimaryActive: '#0057cd',
-      buttonPrimaryBg: 'var(--color-primary)',
-      buttonPrimaryBgHover: 'var(--color-primary-hover)',
-      buttonPrimaryBgActive: 'var(--color-primary-active)',
+      buttonPrimaryBg: 'var(--mc-color-primary)',
+      buttonPrimaryBgHover: 'var(--mc-color-primary-hover)',
+      buttonPrimaryBgActive: 'var(--mc-color-primary-active)',
       buttonPrimaryText: '#ffffff',
     },
   },
@@ -206,9 +206,9 @@ const palettes: Palette[] = [
       colorPrimaryHover: '#83aaff',
       colorPrimary: '#0070f7',
       colorPrimaryActive: '#0059c7',
-      buttonPrimaryBg: 'var(--color-primary)',
-      buttonPrimaryBgHover: 'var(--color-primary-hover)',
-      buttonPrimaryBgActive: 'var(--color-primary-active)',
+      buttonPrimaryBg: 'var(--mc-color-primary)',
+      buttonPrimaryBgHover: 'var(--mc-color-primary-hover)',
+      buttonPrimaryBgActive: 'var(--mc-color-primary-active)',
       buttonPrimaryText: '#ffffff',
     },
   },
@@ -238,9 +238,9 @@ const palettes: Palette[] = [
       colorPrimaryHover: '#43c265',
       colorPrimary: '#008a3b',
       colorPrimaryActive: '#006e2d',
-      buttonPrimaryBg: 'var(--color-primary)',
-      buttonPrimaryBgHover: 'var(--color-primary-hover)',
-      buttonPrimaryBgActive: 'var(--color-primary-active)',
+      buttonPrimaryBg: 'var(--mc-color-primary)',
+      buttonPrimaryBgHover: 'var(--mc-color-primary-hover)',
+      buttonPrimaryBgActive: 'var(--mc-color-primary-active)',
       buttonPrimaryText: '#ffffff',
     },
   },
@@ -270,9 +270,9 @@ const palettes: Palette[] = [
       colorPrimaryHover: '#bb9aff',
       colorPrimary: '#8d4fff',
       colorPrimaryActive: '#732ee4',
-      buttonPrimaryBg: 'var(--color-primary)',
-      buttonPrimaryBgHover: 'var(--color-primary-hover)',
-      buttonPrimaryBgActive: 'var(--color-primary-active)',
+      buttonPrimaryBg: 'var(--mc-color-primary)',
+      buttonPrimaryBgHover: 'var(--mc-color-primary-hover)',
+      buttonPrimaryBgActive: 'var(--mc-color-primary-active)',
       buttonPrimaryText: '#ffffff',
     },
   },
@@ -302,9 +302,9 @@ const palettes: Palette[] = [
       colorPrimaryHover: '#ff8887',
       colorPrimary: '#e81e39',
       colorPrimaryActive: '#bf0027',
-      buttonPrimaryBg: 'var(--color-primary)',
-      buttonPrimaryBgHover: 'var(--color-primary-hover)',
-      buttonPrimaryBgActive: 'var(--color-primary-active)',
+      buttonPrimaryBg: 'var(--mc-color-primary)',
+      buttonPrimaryBgHover: 'var(--mc-color-primary-hover)',
+      buttonPrimaryBgActive: 'var(--mc-color-primary-active)',
       buttonPrimaryText: '#ffffff',
     },
   },
@@ -334,9 +334,9 @@ const palettes: Palette[] = [
       colorPrimaryHover: '#a8abb2',
       colorPrimary: '#74777e',
       colorPrimaryActive: '#5b5f65',
-      buttonPrimaryBg: 'var(--color-primary)',
-      buttonPrimaryBgHover: 'var(--color-primary-hover)',
-      buttonPrimaryBgActive: 'var(--color-primary-active)',
+      buttonPrimaryBg: 'var(--mc-color-primary)',
+      buttonPrimaryBgHover: 'var(--mc-color-primary-hover)',
+      buttonPrimaryBgActive: 'var(--mc-color-primary-active)',
       buttonPrimaryText: '#ffffff',
     },
   },
@@ -366,9 +366,9 @@ const palettes: Palette[] = [
       colorPrimaryHover: '#ff8c61',
       colorPrimary: '#d44700',
       colorPrimaryActive: '#aa3700',
-      buttonPrimaryBg: 'var(--color-primary)',
-      buttonPrimaryBgHover: 'var(--color-primary-hover)',
-      buttonPrimaryBgActive: 'var(--color-primary-active)',
+      buttonPrimaryBg: 'var(--mc-color-primary)',
+      buttonPrimaryBgHover: 'var(--mc-color-primary-hover)',
+      buttonPrimaryBgActive: 'var(--mc-color-primary-active)',
       buttonPrimaryText: '#ffffff',
     },
   },
@@ -437,9 +437,9 @@ export default Vue.extend({
 
 .hct-hero,
 .hct-card {
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--mc-color-border);
   border-radius: 18px;
-  background: var(--color-surface);
+  background: var(--mc-color-surface);
 }
 
 .hct-hero {
@@ -452,7 +452,7 @@ export default Vue.extend({
 
 .hct-kicker {
   margin: 0 0 10px;
-  color: var(--color-primary);
+  color: var(--mc-color-primary);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -461,7 +461,7 @@ export default Vue.extend({
 
 .hct-title {
   margin: 0;
-  color: var(--color-text);
+  color: var(--mc-color-text);
   font-size: 34px;
   line-height: 1.15;
 }
@@ -469,7 +469,7 @@ export default Vue.extend({
 .hct-text {
   max-width: 700px;
   margin: 16px 0 0;
-  color: var(--color-text-muted);
+  color: var(--mc-color-text-muted);
   line-height: 1.7;
 }
 
@@ -486,19 +486,19 @@ export default Vue.extend({
   gap: 8px;
   align-items: center;
   padding: 8px 10px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--mc-color-border);
   border-radius: 999px;
-  background: var(--color-surface);
-  color: var(--color-text);
+  background: var(--mc-color-surface);
+  color: var(--mc-color-text);
   font: inherit;
   font-size: 13px;
   cursor: pointer;
 }
 
 .seed-option--active {
-  border-color: var(--color-primary);
-  background: var(--color-primary-bg);
-  color: var(--color-primary-active);
+  border-color: var(--mc-color-primary);
+  background: var(--mc-color-primary-bg);
+  color: var(--mc-color-primary-active);
 }
 
 .seed-option__swatch {
@@ -546,7 +546,7 @@ export default Vue.extend({
 
 .hct-card__header p {
   margin: 8px 0 0;
-  color: var(--color-text-muted);
+  color: var(--mc-color-text-muted);
 }
 
 .tone-grid {
@@ -577,7 +577,7 @@ export default Vue.extend({
 .token-list {
   display: grid;
   overflow: hidden;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--mc-color-border);
   border-radius: 14px;
 }
 
@@ -587,7 +587,7 @@ export default Vue.extend({
   gap: 14px;
   align-items: center;
   padding: 12px 14px;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--mc-color-border);
 }
 
 .token-row:last-child {
@@ -597,12 +597,12 @@ export default Vue.extend({
 .token-swatch {
   width: 28px;
   height: 28px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--mc-color-border);
   border-radius: 999px;
 }
 
 .token-row code {
-  color: var(--color-text);
+  color: var(--mc-color-text);
 }
 
 .token-row strong {
@@ -610,7 +610,7 @@ export default Vue.extend({
 }
 
 .token-row span:last-child {
-  color: var(--color-text-muted);
+  color: var(--mc-color-text-muted);
 }
 
 .hct-actions {

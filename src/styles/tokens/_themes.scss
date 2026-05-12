@@ -1,0 +1,15 @@
+$css-var-prefix: 'mc' !default;
+
+@function css-var-name($name) {
+  @return --#{$css-var-prefix}-#{$name};
+}
+
+@function css-var($name) {
+  @return var(#{css-var-name($name)});
+}
+
+@mixin emit-css-vars($tokens) {
+  @each $name, $value in $tokens {
+    #{css-var-name($name)}: #{$value};
+  }
+}
