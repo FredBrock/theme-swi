@@ -4,6 +4,84 @@
 
 梳理主流 Design System（设计系统）的来源、技术实现、适用场景和选型参考，为后续主题系统、组件库选型和自研设计体系提供参考。
 
+## 规范参考框架
+
+自研 Web 组件库或 Design System 时，不建议只参考单一设计体系。更稳妥的方式是按规范层级拆解：用成熟 Design System 参考产品体验，用组件库参考 API 和工程落地，用标准规范约束 Design Token（设计令牌）和 a11y（无障碍访问）。
+
+| 参考类型 | 优先参考 | 主要价值 |
+| --- | --- | --- |
+| 国际通用 Design System | Material Design、Carbon、Fluent、Spectrum、Polaris、Atlassian Design System、GOV.UK Design System | 视觉语言、组件规范、交互模式、内容设计、可访问性 |
+| 企业级组件库 | Ant Design、Arco Design、Element Plus、Naive UI、MUI、Chakra UI、Mantine | 组件 API、主题系统、表单表格、工程化实现 |
+| Headless / 底层组件 | Radix UI、Headless UI、Base UI、Ark UI、Reka UI | 复杂组件行为、键盘交互、a11y、可组合性 |
+| Design Token 标准 | W3C Design Tokens Community Group、Style Dictionary、Tokens Studio、Ant Design Token、Carbon Tokens | token 分层、跨端输出、主题切换、多品牌 |
+| 无障碍规范 | WCAG 2.2、WAI-ARIA APG、Inclusive Components、GOV.UK Accessibility | 对比度、语义结构、焦点管理、键盘操作、错误提示 |
+| 平台规范 | Apple HIG、Material Design、Fluent Design | iOS、Android、桌面端和 Web 的平台一致性 |
+| 内容设计 | Microsoft Writing Style Guide、Google Developer Documentation Style Guide、Atlassian Content Design、GOV.UK Content Design、Polaris Content | 按钮文案、错误提示、空状态、表单标签、帮助文本 |
+
+推荐的 Design Token 分层：
+
+| 层级 | 示例 | 用途 |
+| --- | --- | --- |
+| Primitive Token（原始令牌） | `blue-500`、`gray-100`、`spacing-4`、`font-size-14` | 基础色阶、尺寸、排版原子值 |
+| Semantic Token（语义令牌） | `color-primary`、`color-bg-page`、`color-text-secondary`、`color-border-default` | 表达业务和界面语义，屏蔽原始值变化 |
+| Component Token（组件令牌） | `button-primary-bg`、`button-height-md`、`input-border-focus`、`table-header-bg` | 控制组件内部视觉细节，支持组件级定制 |
+
+每个组件规范至少应覆盖：
+
+| 维度 | 应说明内容 |
+| --- | --- |
+| 使用规则 | 组件用途、何时使用、何时不使用 |
+| 结构与状态 | 组成部分、尺寸、变体、default / hover / active / focus / disabled / loading 等状态 |
+| API | props、events、slots、受控 / 非受控模式、扩展点 |
+| Token | 使用哪些 semantic token 和 component token，是否支持主题覆盖 |
+| 交互 | 鼠标、键盘、触摸、焦点流转和反馈规则 |
+| a11y | HTML 语义、ARIA、键盘操作、焦点管理、错误提示关联 |
+| 国际化 | 文案长度、RTL（从右到左）布局、日期时间、数字格式 |
+| 响应式 | 移动端、桌面端、容器宽度变化和信息密度 |
+| 质量标准 | 单元测试、交互测试、视觉回归、文档示例、边界场景 |
+
+以 Button（按钮）为例，基础规范应包含：
+
+| 项 | 建议 |
+| --- | --- |
+| 用途 | 触发即时操作，避免承载导航或纯展示语义 |
+| 变体 | `primary`、`secondary`、`danger`、`ghost`、`link` |
+| 尺寸 | `sm`、`md`、`lg`，高度和横向 padding 来自 component token |
+| 状态 | default、hover、active、focus-visible、disabled、loading |
+| 交互 | 原生 `button` 优先；Enter / Space 可触发；loading 时避免重复提交 |
+| a11y | 非原生按钮必须补齐 `role="button"`、`tabindex` 和键盘事件；禁用态区分 `disabled` 与 `aria-disabled` |
+| Token | `button-primary-bg`、`button-primary-text`、`button-height-md`、`button-radius` |
+
+企业级 Web 组件库建议优先组合参考：
+
+| 目标 | 推荐组合 |
+| --- | --- |
+| 国内中后台 | Ant Design、Arco Design、Element Plus、Naive UI |
+| Vue 组件库实现 | Element Plus、Naive UI、Ant Design Vue、TDesign Vue Next、Reka UI |
+| 主题系统 | W3C Design Tokens、Style Dictionary、Ant Design Token、Carbon Tokens、CSS Variables |
+| 复杂交互组件 | Radix UI、WAI-ARIA APG、Headless UI、Ark UI |
+| 可访问性基线 | WCAG 2.2、WAI-ARIA APG、Carbon、Spectrum、GOV.UK |
+| 内容和表单体验 | GOV.UK、Polaris、Atlassian Design System |
+
+常用官方入口：
+
+| 资源 | 地址 |
+| --- | --- |
+| Material Design | https://m3.material.io/ |
+| Carbon Design System | https://carbondesignsystem.com/ |
+| Fluent Design System | https://fluent2.microsoft.design/ |
+| Atlassian Design System | https://atlassian.design/ |
+| Shopify Polaris | https://polaris.shopify.com/ |
+| Adobe Spectrum | https://spectrum.adobe.com/ |
+| Ant Design | https://ant.design/ |
+| Arco Design | https://arco.design/ |
+| Element Plus | https://element-plus.org/ |
+| Radix UI | https://www.radix-ui.com/ |
+| WCAG 2.2 | https://www.w3.org/TR/WCAG22/ |
+| WAI-ARIA APG | https://www.w3.org/WAI/ARIA/apg/ |
+| Design Tokens Community Group | https://design-tokens.github.io/community-group/ |
+| Style Dictionary | https://amzn.github.io/style-dictionary/ |
+
 ## 品牌级 Design System
 
 | Design System | 来源 | 技术实现 / 组件库 | 特点 |
