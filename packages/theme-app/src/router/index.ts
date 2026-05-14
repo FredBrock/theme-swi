@@ -32,6 +32,11 @@ const routes: Array<RouteConfig> = [
     path: '/root-theme',
     name: 'root-theme',
     component: () => import(/* webpackChunkName: "root-theme" */ '../views/RootThemeView.vue')
+  },
+  {
+    path: '/material-color-utilities',
+    name: 'material-color-utilities',
+    component: () => import(/* webpackChunkName: "material-color-utilities" */ '../views/MaterialColorUtilitiesView.vue')
   }
 ]
 

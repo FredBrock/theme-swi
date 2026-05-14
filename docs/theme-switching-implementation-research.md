@@ -403,6 +403,68 @@ Tailwind / CSS Modules / CSS Variables 编写视觉样式
 
 ## 关键工程问题
 
+## 从图片到主题色的实现分层（cheat sheet 解读）
+
+这套分层适合补充到 Color Algorithm（颜色算法）实践中，尤其适用于 Material You（Material 你）风格的动态主题。
+
+### 1) 从图片提取候选主题色
+
+```txt
+Wallpaper（壁纸）
+        ↓
+Quantize（颜色量化）
+        ↓
+Score（颜色评分）
+        ↓
+Top Seed Color（高质量种子色）
+```
+
+| 步骤 | 作用 | 工程价值 |
+| --- | --- | --- |
+| Quantize（颜色量化） | 把图片压缩为 N 个代表色 | 降噪并降低颜色空间复杂度，避免直接在海量像素上做主题决策 |
+| Score（颜色评分） | 对候选色按主题适配性排序并去重 | 提高可用性，避免只按“出现频率”选色导致灰暗或脏色入选 |
+
+说明：cheat sheet 中提到的 Celebi / Wu / WSMeans 属于量化与聚类链路中的实现细节；在组件库层面可抽象为“先量化，再评分”。
+
+### 2) 给定一个颜色，生成可用主题
+
+```txt
+Seed Color（种子色）
+        ↓
+HCT（Hue/Chroma/Tone）
+        ↓
+Palettes（色调色板）
+        ↓
+Scheme（语义角色配色）
+        ↓
+Component Tokens（组件令牌）
+```
+
+| 层级 | 输入/输出 | 适用场景 | 风险与成本 |
+| --- | --- | --- | --- |
+| Scheme（语义配色） | 输入色板，输出 `primary`、`surface`、`onPrimary` 等角色色 | 最推荐给业务与组件直接消费 | 一致性最好，灵活性相对受约束 |
+| Palettes（色板） | 输入 seed，输出多条 tonal palettes（按 tone 的色阶） | 设计系统搭建、品牌扩展 | 需要定义 tone 分布与对比规则 |
+| HCT（颜色模型） | 输入任意色，输出 hue/chroma/tone 可控表示 | 动态主题算法、亮暗模式自动生成 | 需要色彩工程理解与测试验证 |
+| Blend（颜色混合） | 在 HCT 空间插值或调和 hue | 动画、渐变、品牌色协调 | 误用会导致语义漂移或品牌识别弱化 |
+
+### 3) 抽象层级选择建议
+
+| 层级倾向 | 结论 |
+| --- | --- |
+| 高层（Scheme） | 易用、稳定、设计语言一致性强；默认优先 |
+| 中层（Palettes） | 适合设计系统维护者做可控扩展 |
+| 底层（HCT / Blend） | 灵活但复杂，适合算法和基础设施层，不建议业务组件直接依赖 |
+
+落地建议：
+
+```txt
+业务组件只消费语义 token（如 --color-primary）
+算法层负责 Quantize / Score / HCT / Blend
+通过 CSS Variables 承载最终主题值
+```
+
+这样可以同时获得：动态主题能力、可维护性、跨品牌扩展能力和组件 API 稳定性。
+
 ### 首屏闪烁
 
 主题切换常见问题是页面先按 light 渲染，再切到 dark，产生 FOUC（样式闪烁）。常见解决方案：
@@ -473,3 +535,37 @@ CSS Variables
         ↓
 Headless UI 或自研组件读取语义变量
 ```
+
+## 各组件库的颜色算法能力对比
+
+本节聚焦“是否能从 seed color（种子色）自动推导主题色”，并区分两类能力：
+
+- 算法中心化：有较完整、明确的官方颜色生成管线。
+- 规则推导 + 可配置：提供推导规则和配置项，但不强制单一算法路径。
+
+| 组件库 / 设计系统 | 算法定位 | 典型能力 | 工程侧建议 |
+| --- | --- | --- | --- |
+| Material Design 3（Material You） | 算法中心化 | `HCT -> Tonal Palette -> Scheme Roles`，支持动态主题与亮暗自动映射 | 适合“从单个种子色生成整套语义主题”的场景 |
+| Ant Design v5 | 算法中心化 | `Seed Token -> Map Token -> Alias Token`，`defaultAlgorithm` / `darkAlgorithm` | 适合企业后台，需要稳定主题一致性与 API 化配置 |
+| MUI | 规则推导 + 可配置 | `augmentColor`、`tonalOffset`、`contrastText` 推导，支持 `ThemeProvider` / `CssVarsProvider` | 适合已有 MUI 体系项目，逐步 token 化改造 |
+| Mantine | 规则推导 + 可配置 | `primaryShade`、variant 规则、`autoContrast`，围绕色阶生成状态色 | 适合需要快速定制品牌色阶和组件变体 |
+| Chakra UI | 规则推导 + 可配置 | semantic tokens（语义令牌）+ color mode（颜色模式）+ 主题扩展 | 适合以语义 token 驱动的中大型业务应用 |
+| shadcn/ui | 主题机制为主（算法外置） | `Tailwind + CSS Variables`，可接入 OKLCH/HCT 生成结果 | 适合自研设计规范，算法由业务侧控制 |
+| DaisyUI | 主题机制为主（算法外置） | 预设主题 + `data-theme` 切换，变量覆盖成本低 | 适合快速多主题切换，算法通常由外部工具补齐 |
+| Element Plus | 主题机制为主（算法外置） | `--el-*` CSS Variables + Sass，运行时可覆盖 | 适合 Vue 后台改造，算法建议在 token 构建层实现 |
+
+### 术语说明：规则推导 + 可配置
+
+“规则推导 + 可配置”不是“没有算法”，而是：
+
+- 有默认推导规则：如 hover/active 状态色、对比文本色、浅深色阶映射。
+- 规则参数可调：如主色阶、对比阈值、tonal 偏移、语义 token 映射。
+- 不强制唯一算法管线：可接入项目自己的 Design Token（设计令牌）策略与品牌规范。
+
+### 选型建议（按颜色算法诉求）
+
+| 诉求 | 推荐优先级 |
+| --- | --- |
+| 单种子色自动生成完整 light/dark 主题 | Material You > Ant Design v5 > MUI/Mantine/Chakra |
+| 需要高度品牌化、可深度定制 token | MUI/Mantine/Chakra/shadcn（配合自建算法层） |
+| Vue 生态中平衡工程成本与可维护性 | Element Plus（变量承载）+ 外部算法层（如 HCT/OKLCH 生成） |

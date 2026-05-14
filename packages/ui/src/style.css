@@ -1,0 +1,41 @@
+:root {
+  --mc-color-primary: #2f6fed;
+  --mc-color-primary-hover: #255bca;
+  --mc-color-primary-active: #1d4aa9;
+  --mc-color-on-primary: #ffffff;
+}
+
+.mc-button {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.mc-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mc-button--primary {
+  background: var(--mc-color-primary);
+  color: var(--mc-color-on-primary);
+}
+
+.mc-button--primary:hover:not(:disabled) {
+  background: var(--mc-color-primary-hover);
+}
+
+.mc-button--primary:active:not(:disabled) {
+  background: var(--mc-color-primary-active);
+}
+
+.mc-button--ghost {
+  background: transparent;
+  color: var(--mc-color-primary);
+  border-color: var(--mc-color-primary);
+}
